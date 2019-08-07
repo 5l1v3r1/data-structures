@@ -5,11 +5,12 @@ import java.util.List;
 
 public class Stack<T> {
 	private List<T> list;
-	private int top = -1;
+	private int top;
 	private final int MAXSIZE;
 	
 	public Stack(int maxsize) {
 		list = new ArrayList<T>();
+		top = -1;
 		this.MAXSIZE = maxsize;
 	}
 	
@@ -45,7 +46,7 @@ public class Stack<T> {
 	
 	public T peek(int index) {
 		if(!isEmpty()) {
-			if(index <= MAXSIZE && index <= top) {
+			if(index <= top) {
 				return list.get(top - index);
 			}else {
 				System.out.println("Invalid index");
