@@ -1,5 +1,6 @@
 package com.utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Stack<T> {
@@ -8,61 +9,49 @@ public class Stack<T> {
 	private final int MAXSIZE;
 	
 	public Stack(int maxsize) {
-		list = new ArrayList();
+		list = new ArrayList<T>();
 		this.MAXSIZE = maxsize;
 	}
 	
-	public Boolean isEmpty() {
-		if(top == -1)
+	private Boolean isEmpty() {
+		if(top == -1) {
+			System.out.println("Stack is Empty");
 			return true;
-		else false;
-	}
-	
-	public Boolean isFull() {
-		if(top == MAXSIZE)
-			return true;
+		}
 		return false;
 	}
 	
-	public T getTopOfTheStack() {
-		if(isEmpty()) {
-			System.out.println("Stack is Empty");
-			return null;
+	private Boolean isFull() {
+		if(top == MAXSIZE-1) {
+			System.out.println("Stack overflowed");
+			return true;
 		}
-		return list.get(top);
+		return false;
 	}
 	
 	public void push(T data) {
-		if(isFull()) {
-			System.out.println("Stack overflowed");
-			return;
+		if(!isFull()) {
+			list.add(data);
+			top++;
 		}
-		
-		list.add(data);
-		top++;
 	}
 	
 	public void pop() {
-		if(isEmpty()) {
-			System.out.println("Stack is empty");
-			return;
+		if(!isEmpty()) {
+			list.remove(top);
+			top--;
 		}
-		
-		list.remove(top);
-		top--;
 	}
 	
 	public T peek(int index) {
-		if(isEmpty()) {
-			System.out.println("Stack is empty");
-			return;
+		if(!isEmpty()) {
+			if(index <= MAXSIZE && index <= top) {
+				return list.get(top - index);
+			}else {
+				System.out.println("Invalid index");
+				return null;
+			}
 		}
-		
-		if(index <= MAXSIZE) {
-			return list.get(index);
-		}else {
-			System.out.println("Invalid index as maxsize of the stack is " + MAXSIZE);
-			return;
-		}
+		return null;
 	}
 }
