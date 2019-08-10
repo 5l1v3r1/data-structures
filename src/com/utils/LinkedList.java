@@ -3,9 +3,15 @@ package com.utils;
 public class LinkedList <T> {	
 	Node<T> head = null;
 	
+	public Boolean isEmpty() {
+		if(head == null)
+			return true;
+		return false;
+	}
+	
 	public void insertAtBeginning(T data) {
 		Node<T> newNode = new Node<T>(data);
-		if(head == null) {
+		if(isEmpty()) {
 			head = newNode;
 			return;
 		}
@@ -17,38 +23,69 @@ public class LinkedList <T> {
 	public void insertAfter(T data, T newData) {
 		Node<T> newNode = new Node<T>(newData);
 		
-		Node<T> temp = head;
-		while(temp.data != data) {
-			System.out.println("temp: " + temp);
-			temp = temp.next;
+		Node<T> tempNode = head;
+		while(tempNode.data != data) {
+			tempNode = tempNode.next;
 		}
 		
-		newNode.next = temp.next;
-		temp.next = newNode;
+		newNode.next = tempNode.next;
+		tempNode.next = newNode;
 	}
 	
 	public void insertAtEnd(T data) {
 		Node<T> newNode = new Node<T>(data);
-		if(head == null) {
+		if(isEmpty()) {
 			head = newNode;
 			return;
 		}
 		
-		Node<T> temp = head;
-		while(temp.next != null) {
-			temp = temp.next;
+		Node<T> tempNode = head;
+		while(tempNode.next != null) {
+			tempNode = tempNode.next;
 		}
 		
-		temp.next = newNode;
+		tempNode.next = newNode;
+	}
+	
+	public void removeFromBeginning() {
+		if(isEmpty())
+			return;
+		head = head.next;
+	}
+	
+	public void removeFromEnd() {
+		if(isEmpty())
+			return;
+		
+		Node<T> tempNode = head;
+		Node<T> prevNode = null;
+		while(tempNode.next != null) {
+			prevNode = tempNode;
+			tempNode = tempNode.next;
+		}
+		prevNode.next = null;
+	}
+	
+	public void removeAt(int index) {
+		if(isEmpty())
+			return;
+		
+		Node<T> tempNode = head;
+		Node<T> prevNode = null;
+		for(int i = 0; i<index; i++) {
+			prevNode = tempNode;
+			tempNode = tempNode.next;
+		}
+		prevNode.next = tempNode.next;
 	}
 	
 	@Override
 	public String toString() {
 		String str = head.toString();
-		Node<T> temp = head;
-		while(temp.next != null) {
-			temp = temp.next;
-			str = str + " " + temp;
+		Node<T> tempNode = head;
+		while(tempNode.next != null) {
+			tempNode = tempNode.next;
+			str = str + " " + tempNode;
 		}
 		return str;
 	}
