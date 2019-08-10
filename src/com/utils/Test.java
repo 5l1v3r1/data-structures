@@ -9,5 +9,7 @@ public class Test {
 		list.insertAtBeginning("90");
 		list.insertAfter("iui", "jio");
 		System.out.println(list);
+		list.removeAt(3);
+		System.out.println(list);
 	}
 }
