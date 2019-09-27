@@ -1,8 +1,6 @@
 package com.utils;
 
-import java.util.Comparator;
-
-public class BinarySearchTree <T> {
+public class BinarySearchTree <T extends Comparable<T>> {
 	private TreeNode<T> root = null;
 	
 	public void insert(T data) {
@@ -14,12 +12,12 @@ public class BinarySearchTree <T> {
 			return new TreeNode<T>(data);
 		}
 		
-//		if(curr)
-//			current.left = add(current.left, data);
-//		else if(data > current.data)
-//			current.right = add(current.right, data);
-//		else
-//			return current;
+		if(data.compareTo(current.data) < 0)
+			current.left = add(current.left, data);
+		else if(data.compareTo(current.data) > 0)
+			current.right = add(current.right, data);
+		else
+			return current;
 		return current;
 	}
 	
@@ -27,8 +25,8 @@ public class BinarySearchTree <T> {
 		preOrderTraversal(root);
 	}
 	
-	public void inorder() {
-		inorderTraversal(root);
+	public void inOrder() {
+		inOrderTraversal(root);
 	}
 	
 	public void postOrder() {
@@ -44,13 +42,13 @@ public class BinarySearchTree <T> {
 		preOrderTraversal(root.right);
 	}
 	
-	private void inorderTraversal(TreeNode<T> root) {
+	private void inOrderTraversal(TreeNode<T> root) {
 		if(root == null)
 			return;
 		
-		inorderTraversal(root.left);
+		inOrderTraversal(root.left);
 		System.out.print(root.data + " ");
-		inorderTraversal(root.right);
+		inOrderTraversal(root.right);
 	}
 	
 	private void postOrderTraversal(TreeNode<T> root) {
@@ -64,7 +62,7 @@ public class BinarySearchTree <T> {
 
 }
 
-class TreeNode <T> implements Comparator<T>{
+class TreeNode <T>{
 	T data;
 	TreeNode<T> left;
 	TreeNode<T> right;
@@ -74,10 +72,4 @@ class TreeNode <T> implements Comparator<T>{
 		this.left = null;
 		this.right = null;
 	}
-
-	@Override
-	public int compare(T o1, T o2) {
-		return 0;
-	}
-	
 }

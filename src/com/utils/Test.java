@@ -2,12 +2,11 @@ package com.utils;
 
 public class Test {
 	public static void main(String[] args) {
-		BinarySearchTree node = new BinarySearchTree();
-		
-		node.insert(44);
-		node.insert(33);
-		
-		node.insert(22);
-		
+		BinarySearchTree<String> tree = new BinarySearchTree<String>();
+		tree.insert("HA");
+		tree.insert("AI");
+		tree.insert("IO");
+		tree.insert("AA");
+		tree.inorder();
 	}
 }
