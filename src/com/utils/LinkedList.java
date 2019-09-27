@@ -1,7 +1,7 @@
 package com.utils;
 
 public class LinkedList <T> {	
-	Node<T> head = null;
+	private Node<T> head = null;
 	
 	public Boolean isEmpty() {
 		if(head == null)
