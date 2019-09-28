@@ -57,15 +57,17 @@ public class BinarySearchTree <T extends Comparable<T>> {
 			return null;
 		
 		if(data.compareTo(current.data) == 0) {
+			//In case of a leaf node
 			if(current.left == null && current.right == null)
 				return null;
-			
+			//In case of a single child node 
 			if(current.left == null)
 				return current.right;
 			
 			if(current.right == null)
 				return current.left;
 			
+			//In case of two children nodes
 			current.data = findSmallestValue(current.right);
 			current.right = deleteRecursive(current.right, current.data);
 			return current;
